@@ -22,7 +22,10 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "*",
+    origin: [
+      "http://localhost:5173",        // local frontend
+      "https://newaiproject-phi.vercel.app"
+    ],
     credentials: true,
   })
 );
