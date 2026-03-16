@@ -14,7 +14,7 @@ function Dashboard() {
   const [copiedId, setCopiedId] = useState(null);
   const handleDeploy = async (id) => {
     try {
-      const result = await axios.get(`${serverUrl}/api/website/deploy/${id}`, {
+      const result = await axios.get(`${serverUrl}/api/website/get-all`, {
         withCredentials: true,
       });
       window.open(`${result.data.url}`, "_blank");

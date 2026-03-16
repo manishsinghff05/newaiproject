@@ -30,7 +30,8 @@ function App() {
 
         <Route path="/pricing" element={<Pricing />} />
       </Routes>
-    </BrowserRouter>
+ 
+   </BrowserRouter>
   );
 }
 
