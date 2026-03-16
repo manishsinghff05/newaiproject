@@ -24,7 +24,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",        // local frontend
-      "https://aiproject-1-ghzk.onrender.com" // deployed frontend (tumhara URL)
+      
     ],
     credentials: true,
   })
