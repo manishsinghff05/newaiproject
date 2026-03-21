@@ -9,7 +9,8 @@ import WebsiteEditor from "./pages/Editor";
 import LiveSite from "./pages/LiveSite";
 import Pricing from './pages/Pricing'
 
-export const serverUrl = "https://newaiproject-nr1e.onrender.com";
+// Empty string = same origin (when client is served by the same server on Render)
+export const serverUrl = import.meta.env.VITE_API_URL || "";
 function App() {  
   useGetCurrentUser();
   const { userData } = useSelector((state) => state.user);

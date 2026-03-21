@@ -10,7 +10,7 @@ const generateResponse = async (prompt) => {
     headers: {
       Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
       "Content-Type": "application/json",
-      "HTTP-Referer": "http://localhost:5173",
+      "HTTP-Referer": process.env.FRONTEND_URL || process.env.RENDER_EXTERNAL_URL || "http://localhost:5173",
       "X-Title": "Genweb.ai"
     },
 

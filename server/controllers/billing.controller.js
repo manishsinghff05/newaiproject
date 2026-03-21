@@ -30,8 +30,8 @@ try {
         credits:plan.credits,
         plan:plan.plan
     },
-    success_url:`${process.env.FRONTEND_URL}/`,
-    cancel_url:`${process.env.FRONTEND_URL}/pricing`
+    success_url:`${process.env.FRONTEND_URL || process.env.RENDER_EXTERNAL_URL}/`,
+    cancel_url:`${process.env.FRONTEND_URL || process.env.RENDER_EXTERNAL_URL}/pricing`
 
    })
 

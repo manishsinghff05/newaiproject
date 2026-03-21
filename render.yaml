@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: genweb-ai
+    runtime: node
+    region: oregon
+
+    buildCommand: npm run build
+    startCommand: npm start
+
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URL
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: OPENROUTER_API_KEY
+        sync: false
+      - key: STRIPE_SECRET_KEY
+        sync: false
+      - key: STRIPE_WEBHOOK_SECRET
+        sync: false
+      - key: VITE_FIREBASE_API_KEY
+        sync: false
+      # Optional: FRONTEND_URL for Stripe/OpenRouter (defaults to RENDER_EXTERNAL_URL)

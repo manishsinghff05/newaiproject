@@ -487,7 +487,7 @@ export const deploy=async (req,res)=>{
         }
 
         website.deployed=true
-        website.deployUrl=`${process.env.FRONTEND_URL}/site/${website.slug}`
+        website.deployUrl=`${process.env.FRONTEND_URL || process.env.RENDER_EXTERNAL_URL}/site/${website.slug}`
         await website.save()
 
         return res.status(200).json({
