@@ -27,8 +27,8 @@ const generateResponse = async (prompt) => {
 
       temperature: 0.2,
 
-      // ⭐ IMPORTANT FIX
-      max_tokens: 2000
+      // Must be high enough for full HTML document (~16k tokens for large sites)
+      max_tokens: 16000
 
     }),
   });
