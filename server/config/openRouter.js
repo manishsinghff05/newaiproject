@@ -27,15 +27,22 @@ const generateResponse = async (prompt) => {
 
       temperature: 0.2,
 
-      // Must be high enough for full HTML document (~16k tokens for large sites)
-      max_tokens: 16000
+      // Configurable via env. Default 2500 works with free OpenRouter credits (~2800).
+      // Increase (e.g. 16000) when you add credits at https://openrouter.ai/settings/credits
+      max_tokens: parseInt(process.env.OPENROUTER_MAX_TOKENS, 10) || 2500
 
     }),
   });
 
   if (!res.ok) {
-    const err = await res.text();
-    throw new Error("OpenRouter Error: " + err);
+    const errText = await res.text();
+    let errMessage = errText;
+    try {
+      const errJson = JSON.parse(errText);
+      const msg = errJson?.error?.message || errJson?.message;
+      if (msg) errMessage = msg;
+    } catch (_) {}
+    throw new Error(errMessage);
   }
 
   const data = await res.json();

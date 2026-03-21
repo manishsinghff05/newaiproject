@@ -353,7 +353,13 @@ export const generateWebsite = async (req, res) => {
         })
 
     } catch (error) {
-        return res.status(500).json({ message: `generate website error ${error}` })
+        const msg = error?.message || String(error);
+        const isCredits = /credits|402|max_tokens|payment required/i.test(msg);
+        return res.status(isCredits ? 402 : 500).json({
+            message: isCredits
+                ? "OpenRouter credits exhausted. Add credits at https://openrouter.ai/settings/credits"
+                : `Generate website error: ${msg}`,
+        });
     }
 }
 
@@ -453,8 +459,13 @@ RETURN RAW JSON ONLY:
 
 
     } catch (error) {
-        console.log(error)
- return res.status(500).json({ message: `update website error ${error}` })
+        const msg = error?.message || String(error);
+        const isCredits = /credits|402|max_tokens|payment required/i.test(msg);
+        return res.status(isCredits ? 402 : 500).json({
+            message: isCredits
+                ? "OpenRouter credits exhausted. Add credits at https://openrouter.ai/settings/credits"
+                : `Update website error: ${msg}`,
+        });
     }
 }
 
