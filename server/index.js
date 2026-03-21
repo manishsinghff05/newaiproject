@@ -52,12 +52,15 @@ const indexPath = path.join(clientPath, "index.html");
 app.use(express.static(clientPath));
 
 // SPA fallback - serve index.html for non-API routes
-app.get("*", (req, res, next) => {
+// Express 5: use /{*splat} instead of * (path-to-regexp v8 requires named wildcards)
+const serveIndex = (req, res, next) => {
   if (req.path.startsWith("/api")) return next();
   res.sendFile(indexPath, (err) => {
     if (err) res.status(500).send("Client build not found. Run: npm run build");
   });
-});
+};
+app.get("/", serveIndex);
+app.get("/{*splat}", serveIndex);
 
 const startServer = async () => {
   try {
